@@ -2,16 +2,21 @@
   <div class="othello">
     <ul v-for="i in 8" :key="i">
       <li v-for="j in 8" :key="j">
-        <b-img v-if="field[i-1][j-1]==1" rounded="circle" blank width="75" blank-color="white" alt="named color" class="m-1"/>
-        <b-img v-else-if="field[i-1][j-1]==2" rounded="circle" blank width="75" blank-color="black" alt="named color" class="m-1"/>
+        <b-img v-if="field[i-1][j-1]==1" rounded="circle" blank width="50" blank-color="white" alt="named color" class="m-1"/>
+        <b-img v-else-if="field[i-1][j-1]==2" rounded="circle" blank width="50" blank-color="black" alt="named color" class="m-1"/>
 
-        <b-img v-else-if="turn%2 == 0 && whitePutAble[i-1][j-1]==1" rounded="" blank width="75" @click="putWhite(i-1, j-1)" blank-color="Beige" alt="named color" class="m-1"/>
-        <b-img v-else-if="turn%2 == 1 && blackPutAble[i-1][j-1]==1" rounded="" blank width="75" @click="putBlack(i-1, j-1)" blank-color="Gray" alt="named color" class="m-1"/>
+        <b-img v-else-if="turn%2 == 0 && whitePutAble[i-1][j-1]==1" rounded="" blank width="50" @click="putWhite(i-1, j-1)" blank-color="Beige" alt="named color" class="m-1"/>
+        <b-img v-else-if="turn%2 == 1 && blackPutAble[i-1][j-1]==1" rounded="" blank width="50" @click="putBlack(i-1, j-1)" blank-color="Gray" alt="named color" class="m-1"/>
 
-        <b-img v-else-if="field[i-1][j-1]==0" blank width="75" blank-color="green" alt="named color" class="m-1"/>
+        <b-img v-else-if="field[i-1][j-1]==0" blank width="50" blank-color="green" alt="named color" class="m-1"/>
       </li>
     </ul>
+    <div>
+      <h3>white: {{countPieces(1)}} black: {{countPieces(2)}}</h3>
+    </div>
   </div>
+
+
 </template>
 
 <script>
@@ -21,6 +26,8 @@ export default {
   data () {
     return {
       turn: 0,
+      whiteCount: 0,
+      blackCount: 0,
 
       field: [[0,0,0,0,0,0,0,0],
               [0,0,0,0,0,0,0,0],
@@ -256,9 +263,19 @@ export default {
         i += dy;
         j += dx;
       }
-    }
+    },
 
+    countPieces(color) {
+      var c = 0;
+      this.field.forEach(row => {
+        row.forEach(element => {
+          if(element == color) c++;
+        })
+      });
+      return c;
+    },
   }
+
 }
 </script>
 
@@ -270,15 +287,13 @@ div.othello {
 
 div.othello li {
   background: green;
-  background-size: 50px;
   display: inline-block;
   margin: 1px;
-
 }
 
 div.othello ul {
   padding: 0;
   margin: 0;
-    background: black;
+  background: black;
 }
 </style>
