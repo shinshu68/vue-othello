@@ -2,13 +2,13 @@
   <div class="othello">
     <ul v-for="i in 8" :key="i">
       <li v-for="j in 8" :key="j">
-        <b-img v-if="field[i-1][j-1]==1" rounded="circle" blank width="50" blank-color="white" alt="named color" class="m-1"/>
-        <b-img v-else-if="field[i-1][j-1]==2" rounded="circle" blank width="50" blank-color="black" alt="named color" class="m-1"/>
+        <b-img v-if="field[i-1][j-1]==1" rounded="circle" blank width="35" blank-color="white" alt="named color" class="m-1"/>
+        <b-img v-else-if="field[i-1][j-1]==2" rounded="circle" blank width="35" blank-color="black" alt="named color" class="m-1"/>
 
-        <b-img v-else-if="turn%2 == 0 && whitePutAble[i-1][j-1]==1" rounded="" blank width="50" @click="putWhite(i-1, j-1)" blank-color="Beige" alt="named color" class="m-1"/>
-        <b-img v-else-if="turn%2 == 1 && blackPutAble[i-1][j-1]==1" rounded="" blank width="50" @click="putBlack(i-1, j-1)" blank-color="Gray" alt="named color" class="m-1"/>
+        <b-img v-else-if="turn%2 == 0 && whitePutAble[i-1][j-1]==1" blank width="35" @click="putWhite(i-1, j-1)" blank-color="Beige" alt="named color" class="m-1"/>
+        <b-img v-else-if="turn%2 == 1 && blackPutAble[i-1][j-1]==1" blank width="35" @click="putBlack(i-1, j-1)" blank-color="Gray" alt="named color" class="m-1"/>
 
-        <b-img v-else-if="field[i-1][j-1]==0" blank width="50" blank-color="green" alt="named color" class="m-1"/>
+        <b-img v-else-if="field[i-1][j-1]==0" blank width="35" blank-color="green" alt="named color" class="m-1"/>
       </li>
     </ul>
     <div>
@@ -26,8 +26,6 @@ export default {
   data () {
     return {
       turn: 0,
-      whiteCount: 0,
-      blackCount: 0,
 
       field: [[0,0,0,0,0,0,0,0],
               [0,0,0,0,0,0,0,0],
@@ -281,10 +279,6 @@ export default {
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
 <style scoped>
-div.othello {
-
-}
-
 div.othello li {
   background: green;
   display: inline-block;
